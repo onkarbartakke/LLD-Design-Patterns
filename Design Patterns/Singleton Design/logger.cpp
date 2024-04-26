@@ -7,7 +7,7 @@ int Logger::cnt = 0;
 
 Logger* Logger::loggerInstance = NULL;
 
-//mutex Logger::mtx;
+mutex Logger::mtx;
 
 
 
@@ -26,12 +26,12 @@ Logger* Logger::getLogger()
 {
     if(loggerInstance == NULL)
     {
-       // mtx.lock();
+       mtx.lock();
         if(loggerInstance == NULL)
         {
             loggerInstance = new Logger();
         }
-        //mtx.unlock();
+        mtx.unlock();
     }
 
     return loggerInstance;

@@ -12,7 +12,7 @@ class Logger
     private:
     static int cnt;
     static Logger* loggerInstance;
-    //static mutex mt;
+    static mutex mtx;
     Logger();
 
     public:
