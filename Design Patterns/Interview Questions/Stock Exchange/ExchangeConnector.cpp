@@ -9,19 +9,19 @@ class ExchangeConnector
 
     }
     static ExchangeConnector* exchangeConnectorInstance;
-   // static mutex mtx;
+  static mutex mtx;
 
     public:
     static ExchangeConnector* getExchangeConnectorInstance()
     {
         if(exchangeConnectorInstance == NULL)
         {
-            // mtx.lock();
+           mtx.lock();
             if(exchangeConnectorInstance == NULL)
             {
                 exchangeConnectorInstance = new ExchangeConnector();
             }
-            //mtx.unlock();
+           mtx.unlock();
         }
 
         return exchangeConnectorInstance;
@@ -32,3 +32,6 @@ class ExchangeConnector
         cout<<"Ordered Send to Exchange\n";
     }
 };
+
+ExchangeConnector* ExchangeConnector::exchangeConnectorInstance = NULL;
+mutex ExchangeConnector::mtx;
